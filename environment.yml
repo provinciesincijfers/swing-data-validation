@@ -1,0 +1,15 @@
+name: swing_data_val_env
+
+dependencies:
+- ipykernel
+- ipython
+- matplotlib
+- pandas
+- python
+- numpy
+- ipywidgets
+- seaborn
+- requests
+- jupyterlab
+- openpyxl
+- pip
