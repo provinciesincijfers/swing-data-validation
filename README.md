@@ -19,7 +19,7 @@ Usage
         4. Under **Interactive Plots**
             1. set 'constant' to additive constant that should be used to, given the context (and where needed), display lines (representing number sequences over years) visually distinguishable
             2. Make a choice between (A.) automatic generation of comparison years or (B.) setting comparison years yourself. This can be done by (un)commenting respective cells
-        4. Click **'Run'-'Run all cells'** ofwel op **'Run' - 'Restart Kernel and Run All Cells...'** 
+        4. Click **'Run'-'Run all cells'** ofwel op **'Run' - 'Restart Kernel and Run All Cells...'**
         5. Check
             1. Interactive plot
             2. Overall outlier analysis (in case of division by zero, use the last line instead of the second last in order to ignore 'inf' values)
@@ -55,10 +55,9 @@ Setup:
 
 Open issues:
 ----
-- labels in interactive draw_figure() need to be improved
+- Labels in interactive draw_figure() need to be improved
 - draw_figure() as part of misc.py?
-- When loading non consecutive years (e.g. 2013 en 2016), than too many years are shown in the dropdown under outlier analysis.
-- Plots, create an overly (e.g. line with tickers and line without, ...), or automate distance between lines.
+- When loading non consecutive years (e.g. 2013 en 2016), then too many years are shown in the dropdown under outlier analysis.
+- Plots: create an overlay (e.g. line with tickers and line without, ...), or automate distance between lines.
 - automatic comparison with higher level (e.g. aggregating values for all municipalities in a province)
-- write more elegant solution for division by zero (resulting in 'inf') issue
-- Kay added updated code to Pypi, update code for this
+- Write more elegant solution for division by zero (resulting in 'inf') issue
