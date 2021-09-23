@@ -2,3 +2,5 @@ old
 statincijfers_old
 dcc_*
 /home/chris/code/controle/upload_pinc/old
+.ipynb_checkpoints
+_pycache_
