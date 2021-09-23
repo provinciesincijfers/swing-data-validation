@@ -13,11 +13,11 @@ Usage
 * #### Check PinC upload file
     1. Place PinC upload (Excel!!!) file 'foo.xlsx' in folder **'upload_pinc'**
     2. Open Check_PinC_Upload.ipynb
-        1. Set **Parameters**: all_pinc_periods = True (all periods for the indicators available in PinC) of all_pinc_periods = False (same periods as the ones available in foo.xlsx --> based on parsing avaible periods for first indicator)
+        1. Set **Parameters**: all_pinc_periods = True (all periods for the indicators available in PinC) or all_pinc_periods = False (same periods as the ones available in foo.xlsx --> based on parsing avaible periods for first indicator)
         2. Set **PinC upload file**: filename = 'foo.xlsx'
         3. Under **Import PinC upload file for validation**, set 'sheet_name' by index (int) of by name (str)
         4. Under **Interactive Plots**
-            1. set 'constant' to additive constant that should be used to, given the context (and where needed), display lines (representing number sequences over years) visually distinguishable
+            1. set 'constant' to additive constant that should be used for, given the context (and where needed), displaying lines (representing number sequences over years) in a visibly distinguishable manner
             2. Make a choice between (A.) automatic generation of comparison years or (B.) setting comparison years yourself. This can be done by (un)commenting respective cells
         4. Click **'Run'-'Run all cells'** ofwel op **'Run' - 'Restart Kernel and Run All Cells...'**
         5. Check
@@ -30,10 +30,10 @@ Usage
     * Can be found and set in **'settings.py'**
 
 * #### Create level dictionaries:
-    * PinC Github are levels are placed in '**pinc_github_dir**'
-    * Use 'Create_dicts.ipynb' to create local dictionaries {geo_level_code: geo_level} (e.g. {11001: "Aartselaar", 11002: "Antwerpen", 11004: "Boechout" ,11005: "Boom", ...}) in '**json_config_dir**'.
+    * PinC Github levels are placed in '**pinc_github_dir**'
+    * Use **'Create_dicts.ipynb'** to create local dictionaries {geo_level_code: geo_level} (e.g. {11001: "Aartselaar", 11002: "Antwerpen", 11004: "Boechout" ,11005: "Boom", ...}) in '**json_config_dir**'.
     * Levels currently available: 'statsec', 'gemeente', 'provincie' and 'arrondiss2018'
-    * Note: when adding new geolevels, use PinC geolevel names for creation of geolevel.json files: pinc_geolevel_name.json.
+    * Note: when adding new geolevels, use PinC geolevel names for creation of geolevel '.json' files: 'pinc_geolevel_name.json'.
 
 
 
