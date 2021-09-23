@@ -19,7 +19,7 @@ Usage
         4. Under **Interactive Plots**
             1. set 'constant' to additive constant that should be used for, given the context (and where needed), displaying lines (representing number sequences over years) in a visibly distinguishable manner
             2. Make a choice between (A.) automatic generation of comparison years or (B.) setting comparison years yourself. This can be done by (un)commenting respective cells
-        4. Click **'Run'-'Run all cells'** ofwel op **'Run' - 'Restart Kernel and Run All Cells...'**
+        4. Click **'Run'-'Run all cells'** or **'Run' - 'Restart Kernel and Run All Cells...'**
         5. Check
             1. Interactive plot
             2. Overall outlier analysis (in case of division by zero, use the last line instead of the second last in order to ignore 'inf' values)
