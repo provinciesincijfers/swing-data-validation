@@ -7,15 +7,21 @@ Purpose
 * Create easy to use interface to validate new PinC upload.
 * Create playground for PinC-Python enthousiasts
 
+
+Prerequisites
+----
+You need Jupyter Notebooks.
+Note that files should be in the folder where you clone this repository should be accessible from Jupyter Notebook. This can be achieved most easily by starting Jupyter Notebooks from the folder you cloned to. You can do that by opening an (Anaconda) Prompt, cd'ing to the folder you need and then give the "jupyter notebook" command.
+
 Usage
 ----
 
 * #### Check PinC upload file
     1. Place PinC upload (Excel!!!) file 'foo.xlsx' in folder **'upload_pinc'**
-    2. Open Check_PinC_Upload.ipynb
+    2. Open Check_PinC_Upload.ipynb. Before you run any code, set paramters, upload files etc:
         1. Set **Parameters**: all_pinc_periods = True (all periods for the indicators available in PinC) or all_pinc_periods = False (same periods as the ones available in foo.xlsx --> based on parsing avaible periods for first indicator)
         2. Set **PinC upload file**: filename = 'foo.xlsx'
-        3. Under **Import PinC upload file for validation**, set 'sheet_name' by index (int) of by name (str)
+        3. Under **Import PinC upload file for validation**, choose the Sheet you want to import under 'sheet_name'. Use an index (int) or the name (str) of the sheet.
         4. Under **Interactive Plots**
             1. set 'constant' to additive constant that should be used for, given the context (and where needed), displaying lines (representing number sequences over years) in a visibly distinguishable manner
             2. Make a choice between (A.) automatic generation of comparison years or (B.) setting comparison years yourself. This can be done by (un)commenting respective cells
