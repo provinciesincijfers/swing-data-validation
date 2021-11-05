@@ -7,6 +7,12 @@ Purpose
 * Create easy to use interface to validate new PinC upload.
 * Create playground for PinC-Python enthousiasts
 
+
+Prerequisites
+----
+Jupyter notebook or Jupyter-lab
+
+
 Usage
 ----
 
