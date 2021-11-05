@@ -11,3 +11,6 @@ UPLOAD_DIR = "./upload_pinc"
 
 # Base year: to be used for further reference in code
 BASE_YEAR = 2000
+
+# PinC missing value list
+PINC_MV_L = [-99996, -99997, -99998, -99999]

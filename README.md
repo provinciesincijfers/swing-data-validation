@@ -22,8 +22,10 @@ Usage
         4. Click **'Run'-'Run all cells'** or **'Run' - 'Restart Kernel and Run All Cells...'**
         5. Check
             1. Interactive plot
-            2. Overall outlier analysis (in case of division by zero, use the last line instead of the second last in order to ignore 'inf' values)
-            3. Univariate outlier analysis (in case of division by zero, use the last line instead of the second last in order to ignore 'inf' values)
+            2. Overall outlier analysis [Relative difference evaluation] (in case of division by zero, use the 2nd line instead of the second last in order to ignore 'inf' values and use the 3th line if you also want to ignore PinC Missing Values in the output table)
+            3. Overall outlier analysis [Absolute difference evaluation] (use the 2nd line if you also want to ignore PinC Missing Values in the output table)
+        
+            4. Univariate outlier analysis, based on relative difference evaluation (in case of division by zero, use the last line instead of the second last in order to ignore 'inf' values, and use the last line if you also want to ignore PinC Missing Values in the output table)
 
 
 * #### (Base-)Dir variables:
@@ -32,7 +34,7 @@ Usage
 * #### Create level dictionaries:
     * PinC Github levels are placed in '**pinc_github_dir**'
     * Use **'Create_dicts.ipynb'** to create local dictionaries {geo_level_code: geo_level} (e.g. {11001: "Aartselaar", 11002: "Antwerpen", 11004: "Boechout" ,11005: "Boom", ...}) in '**json_config_dir**'.
-    * Levels currently available: 'statsec', 'gemeente', 'provincie' and 'arrondiss2018'
+    * Levels currently available: 'statsec', 'gemeente', 'gemeente2018', 'provincie' and 'arrondiss2018'
     * Note: when adding new geolevels, use PinC geolevel names for creation of geolevel '.json' files: 'pinc_geolevel_name.json'.
 
 
