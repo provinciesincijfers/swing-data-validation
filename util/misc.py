@@ -13,7 +13,7 @@ Usage: obj = generate_period_list(begin_year, end_year)
 def generate_period_list(begin=BASE_YEAR, end=BASE_YEAR):
     if (begin == end):
         period_list = str(begin)
-        return period_list
+        return period_list, str(begin)
     else:
         tmp_list = list(range(begin,end+1))
         #print(tmp_list)
