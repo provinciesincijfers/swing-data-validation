@@ -37,6 +37,10 @@ Usage
 
 
 
+Disclaimer:
+-----
+* The code runs for only 1 geolevel at the time. Ideally there is one upload file per geolevel. In addition, it is possible to have all geolevels included in one upload (Excel file), in such a way that there is one sheet per geolevel. In the latter instance one can iterate over the sheets in the Excel file (by changing the default 'sheet_name=0' to the appropriate index).
+
 
 Setup:
 ----
@@ -61,3 +65,4 @@ Open issues:
 - Plots: create an overlay (e.g. line with tickers and line without, ...), or automate distance between lines.
 - automatic comparison with higher level (e.g. aggregating values for all municipalities in a province)
 - Write more elegant solution for division by zero (resulting in 'inf') issue
+- Automatic test to see if all values for a given geolevel are included in the PinC upload file

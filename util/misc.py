@@ -6,18 +6,18 @@ from  matplotlib.ticker import FuncFormatter
 from settings import PINC_GITHUB_DIR, JSON_CONF_DIR, UPLOAD_DIR, BASE_YEAR
 
 
-''' 
+'''
 Function for period list generation:
 Usage: obj = generate_period_list(begin_year, end_year)
 '''
 def generate_period_list(begin=BASE_YEAR, end=BASE_YEAR):
     if (begin == end):
         period_list = str(begin)
-        return period_list
+        return period_list, str(begin)
     else:
         tmp_list = list(range(begin,end+1))
         #print(tmp_list)
-        s = [str(i) for i in tmp_list] 
+        s = [str(i) for i in tmp_list]
         period_list = ", ".join(s)
         return period_list, s
 
@@ -39,5 +39,3 @@ def write_json_file(dic, name_file):
         print (f'Writing to: {of}')
     with open(of, 'w') as fp:
         json.dump(dic, fp, indent=4)
-      
-

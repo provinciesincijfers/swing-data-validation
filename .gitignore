@@ -4,3 +4,4 @@ dcc_*
 /home/chris/code/controle/upload_pinc/old
 .ipynb_checkpoints
 _pycache_
+__pycache__
