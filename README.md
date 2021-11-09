@@ -10,7 +10,11 @@ Purpose
 
 Prerequisites
 ----
+<<<<<<< HEAD
 Jupyter notebook or Jupyter-lab. 
+=======
+Jupyter notebook or Jupyter-lab
+>>>>>>> a5eab91ffbda4b828589de76b606874071c809f3
 
 
 Usage
@@ -34,7 +38,7 @@ Usage
             4. Univariate outlier analysis, based on relative difference evaluation (in case of division by zero, use the last line instead of the second last in order to ignore 'inf' values, and use the last line if you also want to ignore PinC Missing Values in the output table)
 
 
-* #### (Base-)Dir variables:
+* #### Base(-Dir) variables:
     * Can be found and set in **'settings.py'**
 
 * #### Create level dictionaries:
