@@ -10,11 +10,8 @@ Purpose
 
 Prerequisites
 ----
-<<<<<<< HEAD
+
 Jupyter notebook or Jupyter-lab. 
-=======
-Jupyter notebook or Jupyter-lab
->>>>>>> a5eab91ffbda4b828589de76b606874071c809f3
 
 
 Usage
