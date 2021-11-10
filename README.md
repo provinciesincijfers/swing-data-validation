@@ -44,7 +44,7 @@ Usage
 * #### Create level dictionaries:
     * PinC Github levels are placed in '**pinc_github_dir**'
     * Use **'Create_dicts.ipynb'** to create local dictionaries {geo_level_code: geo_level} (e.g. {11001: "Aartselaar", 11002: "Antwerpen", 11004: "Boechout" ,11005: "Boom", ...}) in '**json_config_dir**'.
-    * Levels currently available: 'statsec', 'gemeente', 'gemeente2018', 'provincie' and 'arrondiss2018'
+    * Levels currently available: 'statsec', 'gemeente', 'gemeente2018', 'arrondiss2018', 'provincie' and 'gewest'
     * Note: when adding new geolevels, use PinC geolevel names for creation of geolevel '.json' files: 'pinc_geolevel_name.json'.
 
 
