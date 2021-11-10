@@ -93,11 +93,7 @@ class Parse_df:
                 except ValueError as _:
                     break
             
-            # Determine period list from PinC Query
-            #period_list_pinc_query = []
-            #for i in range(len(r_dict['value'])):
-            #    year = r_dict['value'][i]['FullName']
-            #    period_list_pinc_query.append(year)
+            # Retrieval of years
             period_list_pinc_query = []
             for idx in range(int(len(final_value_l))):
                 year = final_value_l[int(idx)]['FullName']
