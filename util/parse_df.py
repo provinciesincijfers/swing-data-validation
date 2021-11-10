@@ -77,15 +77,30 @@ class Parse_df:
             self.geolevel = list(self.my_df['geolevel'].unique())[0]
             #print(f'Variable is {variable_pinc}, geolevel is {self.geolevel}')
             
+            #We create an overall list, for the case where "@odata.nextLink" is available in returned url request
+            final_value_l = [] 
+            
             # Do PinC Query
             url_string = "https://provincies.incijfers.be/JiveServices/odata/Variables('" + variable_pinc + "')/GeoLevels('" + self.geolevel +"')/PeriodLevels('year')/Periods"
             r = requests.get(url_string)  # --> add request to import in .py file
             r_dict = r.json()
             
+            final_value_l = r_dict['value']
+            while "@odata.nextLink" in r_dict.keys():
+                try:
+                    r_dict = requests.get(r_dict['@odata.nextLink']).json()
+                    final_value_l.extend(r_dict['value'])
+                except ValueError as _:
+                    break
+            
             # Determine period list from PinC Query
+            #period_list_pinc_query = []
+            #for i in range(len(r_dict['value'])):
+            #    year = r_dict['value'][i]['FullName']
+            #    period_list_pinc_query.append(year)
             period_list_pinc_query = []
-            for i in range(len(r_dict['value'])):
-                year = r_dict['value'][i]['FullName']
+            for idx in range(int(len(final_value_l))):
+                year = final_value_l[int(idx)]['FullName']
                 period_list_pinc_query.append(year)
             #print(period_list_pinc_query)
             self.pinc_q_years = period_list_pinc_query
