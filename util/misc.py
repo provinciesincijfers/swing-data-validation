@@ -1,4 +1,4 @@
-
+import os.path
 import json
 import pandas as pd
 from  matplotlib.ticker import FuncFormatter
@@ -39,3 +39,20 @@ def write_json_file(dic, name_file):
         print (f'Writing to: {of}')
     with open(of, 'w') as fp:
         json.dump(dic, fp, indent=4)
+
+def _read_excel(file, sheet_name=0):
+    assert os.path.isfile(file)
+
+    column_list = []
+    df_column = pd.read_excel(file, engine='openpyxl').columns
+    for j in df_column:
+            column_list.append(j)
+    converter = {col: str for col in column_list}
+    #print(column_list)
+
+    # Read excel, index_col=0 prevents from adding extra index column
+    # Sheet_name defaults to 0, use other int to choose different or use actual sheet-names (str).
+    if 'Unnamed' in column_list[0]:
+        return pd.read_excel(file, converters=converter, engine='openpyxl', sheet_name=sheet_name, index_col=0)
+    else:
+        return pd.read_excel(file, converters=converter, engine='openpyxl', sheet_name=sheet_name)

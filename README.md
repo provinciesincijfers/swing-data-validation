@@ -10,29 +10,28 @@ Purpose
 
 Prerequisites
 ----
-
-Jupyter notebook or Jupyter-lab. 
+Jupyter notebook or Jupyter-lab
 
 
 Usage
 ----
 
-* #### Check PinC upload file
+* #### Check PinC Upload 
     1. Place PinC upload (Excel!!!) file 'foo.xlsx' in folder **'upload_pinc'**
-    2. Open Check_PinC_Upload.ipynb
-        1. Set **Parameters**: all_pinc_periods = True (all periods for the indicators available in PinC) or all_pinc_periods = False (same periods as the ones available in foo.xlsx --> based on parsing avaible periods for first indicator)
-        2. Set **PinC upload file**: filename = 'foo.xlsx'
-        3. Under **Import PinC upload file for validation**, set 'sheet_name' by index (int) of by name (str)
-        4. Under **Interactive Plots**
-            1. set 'constant' to additive constant that should be used for, given the context (and where needed), displaying lines (representing number sequences over years) in a visibly distinguishable manner
-            2. Make a choice between (A.) automatic generation of comparison years or (B.) setting comparison years yourself. This can be done by (un)commenting respective cells
-        4. Click **'Run'-'Run all cells'** or **'Run' - 'Restart Kernel and Run All Cells...'**
-        5. Check
-            1. Interactive plot
-            2. Overall outlier analysis [Relative difference evaluation] (in case of division by zero, use the 2nd line instead of the second last in order to ignore 'inf' values and use the 3th line if you also want to ignore PinC Missing Values in the output table)
-            3. Overall outlier analysis [Absolute difference evaluation] (use the 2nd line if you also want to ignore PinC Missing Values in the output table)
+    2. Open **Check_PinC_Upload.ipynb**
         
-            4. Univariate outlier analysis, based on relative difference evaluation (in case of division by zero, use the last line instead of the second last in order to ignore 'inf' values, and use the last line if you also want to ignore PinC Missing Values in the output table)
+            A. Under 'Parameters/inputs/imports':      
+                1. 'Parameters': 'all_pinc_periods = True' (all periods for the indicators available in PinC) or all_pinc_periods = False (same periods as the ones available in foo.xlsx --> based on parsing avaible periods for first indicator)
+                2. 'PinC upload file': filename = 'foo.xlsx'
+                3. 'Import PinC upload file for validation': set 'sheet_name' by index (int) of by name (str)
+
+               
+           B. Click **'Run'-'Run all cells'** or **'Run' - 'Restart Kernel and Run All Cells...'**
+           
+           C. Intereactive Check Framework
+                1. Interactive plot
+                2. Interactive overall outlier analysis 
+                3. Univariate outlier analysis,
 
 
 * #### Base(-Dir) variables:
@@ -41,7 +40,7 @@ Usage
 * #### Create level dictionaries:
     * PinC Github levels are placed in '**pinc_github_dir**'
     * Use **'Create_dicts.ipynb'** to create local dictionaries {geo_level_code: geo_level} (e.g. {11001: "Aartselaar", 11002: "Antwerpen", 11004: "Boechout" ,11005: "Boom", ...}) in '**json_config_dir**'.
-    * Levels currently available: 'statsec', 'gemeente', 'gemeente2018', 'arrondiss2018', 'provincie' and 'gewest'
+    * Levels currently available: 'statsec', 'gemeente', 'gemeente2018', 'provincie' and 'arrondiss2018'
     * Note: when adding new geolevels, use PinC geolevel names for creation of geolevel '.json' files: 'pinc_geolevel_name.json'.
 
 
@@ -68,10 +67,12 @@ Setup:
 
 Open issues:
 ----
-- Labels in interactive draw_figure() need to be improved
-- draw_figure() as part of misc.py?
-- When loading non consecutive years (e.g. 2013 en 2016), then too many years are shown in the dropdown under outlier analysis.
-- Plots: create an overlay (e.g. line with tickers and line without, ...), or automate distance between lines.
-- automatic comparison with higher level (e.g. aggregating values for all municipalities in a province)
-- Write more elegant solution for division by zero (resulting in 'inf') issue
-- Automatic test to see if all values for a given geolevel are included in the PinC upload file
+- [x] Simplify code in notebook (reduce number of lines!)
+- [ ] Labels in interactive draw_figure() need to be improved
+- [x] draw_figure() as part of misc.py?
+- [ ] When loading non consecutive years (e.g. 2013 en 2016), then too many years are shown in the dropdown under outlier analysis.
+- [x] Plots: create an overlay (e.g. line with tickers and line without, ...), or automate distance between lines.
+- [ ] automatic comparison with higher level (e.g. aggregating values for all municipalities in a province)
+- [x] Write more elegant solution for division by zero (resulting in 'inf') issue
+- [ ] Automatic test to see if all values for a given geolevel are included in the PinC upload file
+- [x] Lange tijdsreeksen volledig opvragen
