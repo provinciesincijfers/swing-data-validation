@@ -7,10 +7,32 @@ class Parse_df:
     """
     Class to parse the components of a dataframe that will be used later on in PinC Queries
     Parameters:
-    - my_df: dataframe that needs to be parsed
-    - _ind_id: indicator for which available list of years needs to be extracted from PinC
-    - period: 'table' in case list of years available in dataframe/table can be used in PinC Query, 'pinc' in case
-                list of years available in PinC needs to be extracted
+
+    Parameters:
+    ------------
+    - my_df: pd.dataframe
+        Dataframe that needs to be parsed
+
+    Attributes:
+    ------------
+    - my_df : pd.Dataframe  --> holds the dataframe that is parsed
+    - all_pinc_periods : bool  --> compare with all PinC years or not
+    - ind_id : int --> which indicator will be used for parsing info (default to 0)
+    - indicators : list --> list of uploaded indicators
+    - years : list --> list of parsed years
+    - pinc_q_years : list --> list of years that will be passed in pinc querry
+    - geolevel : str --> geolevel parsed from my_df
+    - levels : list --> list of available geolevels in my_df (in fact, code is currently written for only 1 available geolevel)
+    - extra_info : dict --> currently not used yet
+
+    Methods:
+    ---------
+    - to_dict()
+    - determine_levels()
+    - determine_years()
+    - determine_indicators()
+    - determine_geolevel()
+
 
 
     """
@@ -20,7 +42,6 @@ class Parse_df:
             raise Exception("A dataframe is to be passed as an argument.")
         self.all_pinc_periods = None
         self.ind_id = None
-        self.period = None
         self.indicators = []
         self.years = []
         self.pinc_q_years = []
@@ -47,6 +68,7 @@ class Parse_df:
         return dic
 
     def determine_levels(self):
+        ''' Returns different geolevels found in upload file / data_table '''
         self.levels = set(self.my_df['geoitem'])
         return self.levels
 
@@ -54,13 +76,21 @@ class Parse_df:
     #def determine_years(self, period = 'table', _ind_id = 0):
     def determine_years(self, all_pinc_periods: bool, _ind_id = 0):
 
-        #self.period = period
+        ''' Returns the number of years to be used in PinC Query
+
+        Arguments:
+        ----------
+        all_pinc_periods : bool
+            --> in case of 'True': returns all perionds that can be found in PinC for the respective (_ind_id) indicators
+            --> in case of 'False': returns all periods found in the upload dataframe / data_table, based on '_ind_id' indicator
+        _ind_id : int --> index of indicator that will be used for years determination
+        '''
+
         self.all_pinc_periods = all_pinc_periods
         begin = self.my_df['period'].astype(int).min()
         end = self.my_df['period'].astype(int).max()
 
         # Generate period list based on al available years in upload file
-        #if self.period == 'table':
         if self.all_pinc_periods == False:
             #begin = self.my_df['period'].astype(int).min()
             #end = self.my_df['period'].astype(int).max()
@@ -71,7 +101,6 @@ class Parse_df:
 
 
         # Generate period list based on all available years available in PinC, for _ind_id indicator
-        #elif self.period == 'pinc':
         elif self.all_pinc_periods == True:
             # First we fill up the years attribute
             _ , self.years = generate_period_list(begin,end)
@@ -96,16 +125,18 @@ class Parse_df:
             self.pinc_q_years = period_list_pinc_query
             return   ", ".join(period_list_pinc_query)
 
-        else:
-            raise Exception("Expected: 'table' or 'pinc' as argument.")
+        #else:
+        #    raise Exception("Expected: 'table' or 'pinc' as argument.")
 
 
     def determine_indicators(self):
+        ''' Returns list of uploaded indicators '''
         self.indicators = self.my_df.columns[3:].tolist()
         var_list_pinc_query = ",".join(self.indicators)
         return var_list_pinc_query
 
     def determine_geolevel(self):
+        ''' Retuns geolevel, parsed from upload dataframe / data_table '''
         variable_pinc = self.my_df.columns[3:][self.ind_id]
         self.geolevel = list(self.my_df['geolevel'].unique())[0]
         #print(f'Variable is {variable_pinc}, geolevel is {self.geolevel}')

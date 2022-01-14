@@ -19,6 +19,29 @@ class Conn_pinc_data(object):
     Class to connect pinc dataframe with upload file dataframe, in order to visualize similarities and
     detect differences.
 
+    Parameters:
+    ------------
+    - pinc_df : pd.Dataframe --> DataFrame, obtained from PinC querry
+    - upload_df : pd.Dataframe --> Upload DataFrame
+    - level : str --> geolevel on which comparison will be conducted
+
+    Attributes:
+    -----------
+    - pinc_df : pd.DataFrame
+    - upload_df : pd.DataFrame
+    - level : str
+    - cols_dic: dict --> dictionary that will be used to store (pinc_indicator_name : upload_indicator_name) pairs
+
+    Methods:
+    ---------
+    - cols_to_dict()
+    - reversed_cols_to_dict()
+    - level_code_dict()
+    - reversed_level_code_dict()
+    - draw_figure()
+    - overall_outlier_analysis()
+    - show_outliers()
+
     """
     def __init__(self, pinc_df = None, upload_df = None, level = None):
         self.pinc_df = pinc_df
@@ -28,12 +51,14 @@ class Conn_pinc_data(object):
         if self.upload_df is None:
             raise Exception("An upload file dataframe is to be passed as an argument.")
         self.level = level
-        self.cols = None
+        #self.cols = None
         self.cols_dic = {}
         #self.extra_info = {}  # Can bu used to store extra key:value pairs
 
 #### HIER GEKOMEN, NET IF NOT SELF.COLS_DIC: CONDITIE TOEGEVOEGD
     def cols_to_dict(self):
+        ''' Load self.cols_dic dictionary with (pinc_indicator_name, upload_indicator_name) pairs
+        and return dictionary '''
         dic = {key:value for (key, value) in zip(self.pinc_df.columns[2:].tolist(),self.upload_df.columns[3:].tolist())}
         #for key, val in self.extra_info.items():
         #    dic[key] =  val
@@ -41,12 +66,14 @@ class Conn_pinc_data(object):
         return dic
 
     def reversed_cols_to_dict(self):
+        ''' Return dictionary with (upload_indicator_name, pinc_indicator_name) pairs '''
         dic = {value:key for (key, value) in zip(self.pinc_df.columns[2:].tolist(),self.upload_df.columns[3:].tolist())}
         return dic
 
     #@staticmethod
     #def level_code_dict(level= None):
     def level_code_dict(self):
+        ''' Return geolevel dictionary '''
         #Available levels: statsec, gemeente, provincie, arrondissement
         if self.level is None:
             raise Exception("A geolevel is to be passed as an argument to the class constructor.")
@@ -59,6 +86,7 @@ class Conn_pinc_data(object):
     #@staticmethod
     #def reversed_level_code_dict(level= None):
     def reversed_level_code_dict(self):
+        ''' Return reversed geolevel dictionary '''
         #Available levels: statsec, gemeente, provincie, arrondissement
         if self.level is None:
             raise Exception("A geolevel is to be passed as an argument to the class constructor.")
@@ -72,6 +100,19 @@ class Conn_pinc_data(object):
 
 
     def draw_figure(self, var: str ,geo : str, constant : float):
+        ''' Draw interactive plot
+
+        Parameters:
+        ------------
+        - var : str --> indicator to be plotted
+        - geo : str --> geolevel value to be plotted
+        - constant : int --> integer difference between plot lines
+
+        Returns:
+        ---------
+        - interactive plot
+
+        '''
         t_df = pd.DataFrame()
 
         upload_var = self.cols_dic.get(var)
@@ -105,6 +146,20 @@ class Conn_pinc_data(object):
 
 
     def overall_outlier_analysis(self, pinc_year : int, upload_year : int, absolute: bool, ignore_inf = False):
+        ''' Draw interactive plot for overall outlier analysis
+
+        Parameters:
+        -----------
+        - pinc_year : str
+        - upload_year : str
+        - absolute : bool --> plot absolute or relative differences
+        - ingore_inf : bool --> ingore inf values (because of division by zero) in plot or # NOTE:
+
+        Returns:
+        ---------
+        - interactive plot
+
+        '''
         t_df = pd.DataFrame()
         tel = 0
         for var in list(self.cols_dic.keys()):
@@ -158,6 +213,19 @@ class Conn_pinc_data(object):
 
 
     def show_outliers(self, var : str, upload_year : int , pinc_year : int):
+        ''' Draw interactive plot for univariate outlier analysis
+
+        Parameters:
+        ------------
+        - var : str
+        - upload_year : int
+        - pinc_year : int
+
+        Returns:
+        ---------
+        - interactive plot
+
+        '''
         upload_var = self.cols_dic.get(var)
         #upload_var = var_dic.get(var)
 
