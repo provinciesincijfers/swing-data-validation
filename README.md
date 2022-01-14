@@ -76,3 +76,4 @@ Open issues:
 - [x] Write more elegant solution for division by zero (resulting in 'inf') issue
 - [ ] Automatic test to see if all values for a given geolevel are included in the PinC upload file
 - [x] Lange tijdsreeksen volledig opvragen
+- [ ] Add stadincijfers as pip installation
