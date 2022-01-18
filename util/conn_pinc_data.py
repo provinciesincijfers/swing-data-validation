@@ -170,16 +170,21 @@ class Conn_pinc_data(object):
             t_df_p = t_df_p[t_df_p[var]!=-99996]
             t_df_p = t_df_p.rename(columns={'Geo':'Geo_pinc',var: '_pinc_' + str(pinc_year)})
             t_df_p['geo_code_pinc'] = t_df_p['Geo_pinc'].map(self.reversed_level_code_dict())
+            #print('t_df_p: \n', t_df_p.head(3))
 
 
-            t_df_u = self.upload_df[self.upload_df['period']==str(upload_year)][['geoitem',upload_var]]
+            t_df_u = self.upload_df[self.upload_df['period'].astype(str)==str(upload_year)][['geoitem',upload_var]]
+            #print('t_df_u_1: \n', t_df_u.head(2))
             t_df_u = t_df_u.rename(columns={'geoitem':'geo_code_upload', upload_var : '_upload_' + str(upload_year)})
             t_df_u['_upload_' + str(upload_year)] = t_df_u['_upload_' + str(upload_year)].apply(lambda x: float(x))
+            #print('t_df_u: \n', t_df_u.head(2))
 
             m_df = t_df_p.merge(t_df_u, left_on='geo_code_pinc', right_on='geo_code_upload')
             m_df['diff_rel'] = abs(m_df['_pinc_' + str(pinc_year)]-m_df['_upload_' + str(upload_year)])/m_df['_pinc_' + str(pinc_year)]
             m_df['diff_abs'] = abs(m_df['_pinc_' + str(pinc_year)]-m_df['_upload_' + str(upload_year)])
             m_df['Indicator'] = var + '_P' + str(pinc_year) + '_U' + str(upload_year)
+            #print('m_df: \n', m_df.head(3))
+
 
             ## Uncomment next line for some validation
             #print(f'Variable: {var}, Shape: {merged_df.shape}')
@@ -235,7 +240,7 @@ class Conn_pinc_data(object):
         t_df_p['geo_code_pinc'] = t_df_p['Geo_pinc'].map(self.reversed_level_code_dict())
 
 
-        t_df_u = self.upload_df[self.upload_df['period']==str(upload_year)][['geoitem',upload_var]]
+        t_df_u = self.upload_df[self.upload_df['period'].astype(str)==str(upload_year)][['geoitem',upload_var]]
         t_df_u = t_df_u.rename(columns={'geoitem':'geo_code_upload', upload_var : var + '_upload_' + str(upload_year)})
         t_df_u[var + '_upload_' + str(upload_year)] = t_df_u[var + '_upload_' + str(upload_year)].apply(lambda x: float(x))
 
